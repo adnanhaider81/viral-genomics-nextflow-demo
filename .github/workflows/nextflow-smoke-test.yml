@@ -1,0 +1,31 @@
+name: Nextflow smoke test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: nextflow-io/setup-nextflow@v2
+        with:
+          version: 24.10.4
+
+      - name: Build demo container
+        run: docker build -t viral-genomics-nextflow-demo:ci .
+
+      - name: Run workflow
+        run: nextflow run . -profile docker --container viral-genomics-nextflow-demo:ci
+
+      - name: Check outputs
+        run: |
+          test -s results/qc/toy_sample.qc.tsv
+          test -s results/bam/toy_sample.bam
+          test -s results/bam/toy_sample.bam.bai
+          test -s results/depth/toy_sample.depth.tsv
+          test -s results/consensus/toy_sample.consensus.fasta
+          test -s results/report/toy_sample.report.html
+          test -s results/report/toy_sample.report.qmd

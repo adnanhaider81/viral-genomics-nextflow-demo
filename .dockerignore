@@ -1,0 +1,7 @@
+.git/
+.github/
+work/
+results/
+.nextflow*
+__pycache__/
+*.pyc
