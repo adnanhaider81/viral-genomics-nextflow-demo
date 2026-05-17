@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: nextflow-io/setup-nextflow@v2
+      - uses: nf-core/setup-nextflow@v2.1.4
         with:
           version: 24.10.4
 
