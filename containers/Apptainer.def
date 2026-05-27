@@ -3,7 +3,7 @@ From: ubuntu:22.04
 
 %labels
     Author Syed Adnan Haider
-    Version 0.1.0
+    Version 0.1.1
     Description Compact viral genomics Nextflow demo runtime
 
 %post
