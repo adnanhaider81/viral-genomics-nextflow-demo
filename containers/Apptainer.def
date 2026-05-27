@@ -1,0 +1,24 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%labels
+    Author Syed Adnan Haider
+    Version 0.1.0
+    Description Compact viral genomics Nextflow demo runtime
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        bash \
+        ca-certificates \
+        minimap2 \
+        python3 \
+        samtools
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    export LC_ALL=C
+
+%runscript
+    exec "$@"

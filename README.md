@@ -1,6 +1,7 @@
 # Viral Genomics Nextflow Demo
 
 [![Nextflow smoke test](https://github.com/adnanhaider81/viral-genomics-nextflow-demo/actions/workflows/nextflow-smoke-test.yml/badge.svg)](https://github.com/adnanhaider81/viral-genomics-nextflow-demo/actions/workflows/nextflow-smoke-test.yml)
+[![DOI](https://zenodo.org/badge/1241789739.svg)](https://zenodo.org/badge/latestdoi/1241789739)
 
 Small nf-core-style demonstration repository for viral genomics workflow structure. It converts a toy FASTQ dataset into a QC summary, mapped BAM, depth table, masked consensus FASTA, and HTML plus Quarto-ready report.
 
@@ -28,7 +29,9 @@ flowchart LR
 - `modules/` - one process per workflow step.
 - `conf/base.config` - default local resource settings.
 - `conf/docker.config` - Docker execution profile.
+- `conf/apptainer.config` - Apptainer/Singularity execution profile.
 - `conf/slurm.config` - SLURM profile template for HPC clusters.
+- `containers/Apptainer.def` - HPC-friendly container recipe.
 - `scripts/` - small Python utilities used by workflow processes.
 - `test_data/` - synthetic reference FASTA and FASTQ input.
 - `.github/workflows/nextflow-smoke-test.yml` - CI smoke test.
@@ -46,6 +49,25 @@ Run with Docker:
 ```bash
 docker build -t viral-genomics-nextflow-demo:local .
 nextflow run . -profile docker --container viral-genomics-nextflow-demo:local
+```
+
+## Container recipes
+
+The repository includes two container recipes:
+
+- `Dockerfile` - used by the GitHub Actions smoke test and the Docker profile.
+- `containers/Apptainer.def` - for Apptainer/Singularity-oriented HPC environments.
+
+Build the Apptainer image:
+
+```bash
+apptainer build containers/viral-genomics-nextflow-demo.sif containers/Apptainer.def
+```
+
+Run the workflow with the Apptainer profile:
+
+```bash
+nextflow run . -profile apptainer --apptainer_container containers/viral-genomics-nextflow-demo.sif
 ```
 
 ## Main outputs
@@ -66,9 +88,13 @@ My other public repositories show Snakemake-heavy pathogen-genomics workflows. T
 
 No clinical, surveillance, or restricted data are included. Keep real FASTQs, BAMs, and reports outside this repository unless they are approved for public release.
 
+## Data governance
+
+See [DATA_GOVERNANCE.md](DATA_GOVERNANCE.md) for public-data, restricted-data, and sample-identifier handling rules.
+
 ## Citation
 
-Haider SA. Viral Genomics Nextflow Demo. Zenodo-ready software repository. See `CITATION.cff`.
+Haider SA. Viral Genomics Nextflow Demo. Zenodo-archived software repository. See `CITATION.cff`.
 
 ## License
 

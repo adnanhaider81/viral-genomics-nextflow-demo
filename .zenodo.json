@@ -1,0 +1,22 @@
+{
+  "title": "Viral Genomics Nextflow Demo",
+  "upload_type": "software",
+  "description": "A compact Nextflow DSL2 demonstration workflow that converts synthetic viral FASTQ data into QC metrics, mapped BAM, depth table, masked consensus FASTA, and HTML plus Quarto-ready reports.",
+  "creators": [
+    {
+      "name": "Haider, Syed Adnan",
+      "orcid": "0009-0008-7426-6561"
+    }
+  ],
+  "keywords": [
+    "viral genomics",
+    "Nextflow",
+    "DSL2",
+    "bioinformatics workflow",
+    "public health genomics",
+    "synthetic data",
+    "containerized workflow"
+  ],
+  "license": "mit",
+  "access_right": "open"
+}

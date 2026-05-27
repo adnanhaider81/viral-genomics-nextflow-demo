@@ -5,7 +5,7 @@ authors:
   - family-names: Haider
     given-names: Syed Adnan
 version: 0.1.0
-date-released: 2026-05-18
+date-released: 2026-05-27
 type: software
 abstract: "A compact Nextflow DSL2 demo workflow that converts synthetic viral FASTQ data into QC metrics, mapped BAM, depth table, masked consensus FASTA, and HTML plus Quarto-ready reports."
 repository-code: "https://github.com/adnanhaider81/viral-genomics-nextflow-demo"
